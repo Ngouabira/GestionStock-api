@@ -7,7 +7,8 @@ import lombok.*;
 import java.time.Instant;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -22,7 +23,7 @@ public class CommandeFournisseur extends AbstractEntity {
     private Instant dateCommande;
 
     @ManyToOne
-    @JoinColumn(name = "idfournisseur")
+    @JoinColumn(name = "fournisseur_id")
     private Fournisseur fournisseur;
 
    @JsonIgnore

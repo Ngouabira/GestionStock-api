@@ -10,7 +10,6 @@ import com.gildas.gestionstock.mapper.CategorieMapper;
 import com.gildas.gestionstock.repository.ArticleRepository;
 import com.gildas.gestionstock.repository.CategorieRepository;
 import com.gildas.gestionstock.service.CategorieService;
-import jakarta.mail.Part;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;

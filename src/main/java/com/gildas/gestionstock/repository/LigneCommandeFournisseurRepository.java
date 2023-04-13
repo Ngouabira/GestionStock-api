@@ -1,6 +1,5 @@
 package com.gildas.gestionstock.repository;
 
-import com.gildas.gestionstock.entity.LigneCommandeClient;
 import com.gildas.gestionstock.entity.LigneCommandeFournisseur;
 import org.springframework.data.jpa.repository.JpaRepository;
 

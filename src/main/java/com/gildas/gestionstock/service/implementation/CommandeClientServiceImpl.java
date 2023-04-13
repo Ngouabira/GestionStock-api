@@ -223,7 +223,7 @@ public class CommandeClientServiceImpl implements CommandeClientService {
 
     @Override
     public List<LigneCommandeClientDTO> findAllLigneCommandeByCommandeId(Integer id) {
-        return LigneCommandeClientRepository.findBycommandeClientId(id).stream()
+        return LigneCommandeClientRepository.findByCommandeClientId(id).stream()
                 .map(LigneCommandeClientMapper::toDTO).collect(Collectors.toList());
     }
 

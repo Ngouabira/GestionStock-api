@@ -5,7 +5,8 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -15,10 +16,10 @@ import java.math.BigDecimal;
 public class LigneCommandeClient extends AbstractEntity {
 
     @ManyToOne
-    @JoinColumn(name = "idarticle")
+    @JoinColumn(name = "article_id")
     private Article article;
     @ManyToOne
-    @JoinColumn(name = "idcommandeclient")
+    @JoinColumn(name = "commandeclient_id")
     private CommandeClient commandeClient;
 
     private BigDecimal quantite;

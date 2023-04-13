@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.math.BigDecimal;
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("api/commandeclient")
 public class CommandeClientController {
@@ -44,7 +45,7 @@ public class CommandeClientController {
         return commandeClientService.updateQuantite(id, idlignecommande, quantite);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("find-all-lignecommande-by-commande-id/{id}")
     public List<LigneCommandeClientDTO> findAllLigneCommandeByCommandeId(@PathVariable("id") Integer id){
         return commandeClientService.findAllLigneCommandeByCommandeId(id);
     }

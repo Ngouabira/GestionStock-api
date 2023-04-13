@@ -5,7 +5,8 @@ import lombok.*;
 
 import java.math.BigDecimal;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -15,11 +16,11 @@ import java.math.BigDecimal;
 public class LigneCommandeFournisseur extends AbstractEntity {
 
     @ManyToOne
-    @JoinColumn(name = "idarticle")
+    @JoinColumn(name = "article_id")
     private Article article;
 
     @ManyToOne
-    @JoinColumn(name = "idcommandefournisseur")
+    @JoinColumn(name = "commandefournisseur_id")
     private CommandeFournisseur commandeFournisseur;
 
     private BigDecimal quantite;

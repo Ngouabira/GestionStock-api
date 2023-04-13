@@ -3,7 +3,6 @@ package com.gildas.gestionstock.service.implementation;
 import com.gildas.gestionstock.dto.FournisseurDTO;
 import com.gildas.gestionstock.entity.CommandeFournisseur;
 import com.gildas.gestionstock.entity.Fournisseur;
-import com.gildas.gestionstock.entity.LigneCommandeFournisseur;
 import com.gildas.gestionstock.exception.EntityNotFoundException;
 import com.gildas.gestionstock.exception.ErrorCodes;
 import com.gildas.gestionstock.exception.InvalidOperationException;

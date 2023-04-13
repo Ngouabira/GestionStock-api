@@ -8,7 +8,8 @@ import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
@@ -22,7 +23,7 @@ public class CommandeClient extends AbstractEntity {
     @Column(name = "datecommande")
     private Instant dateCommande;
     @ManyToOne
-    @JoinColumn(name = "idclient")
+    @JoinColumn(name = "client_id")
     private Client client;
 
    @JsonIgnore
