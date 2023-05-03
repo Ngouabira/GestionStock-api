@@ -1,7 +1,7 @@
 package com.gildas.gestionstock.mapper;
 
+import com.gildas.gestionstock.auth.entity.User;
 import com.gildas.gestionstock.dto.UserDTO;
-import com.gildas.gestionstock.entity.User;
 import lombok.Builder;
 import lombok.Data;
 

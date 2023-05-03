@@ -1,5 +1,6 @@
-package com.gildas.gestionstock.entity;
+package com.gildas.gestionstock.auth.entity;
 
+import com.gildas.gestionstock.entity.AbstractEntity;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
@@ -11,7 +12,7 @@ import lombok.*;
 @Builder
 @Entity
 @Table
-public class Role extends  AbstractEntity{
+public class Role extends AbstractEntity {
 
     private String role;
 }
