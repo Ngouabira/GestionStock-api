@@ -2,8 +2,8 @@ package com.gildas.gestionstock.auth.controller;
 
 import com.gildas.gestionstock.auth.entity.Token;
 import com.gildas.gestionstock.auth.entity.User;
-import com.gildas.gestionstock.auth.payload.request.ChangePasswordRequest;
-import com.gildas.gestionstock.auth.payload.response.MessageResponse;
+import com.gildas.gestionstock.auth.dto.ChangePasswordDTO;
+import com.gildas.gestionstock.auth.response.MessageResponse;
 import com.gildas.gestionstock.auth.service.TokenService;
 import com.gildas.gestionstock.auth.service.UserService;
 import lombok.AllArgsConstructor;
@@ -60,7 +60,7 @@ public class PasswordController {
     }
 
     @PutMapping("/update-password")
-    public ResponseEntity<?> updatePasword(@RequestBody ChangePasswordRequest cp) {
+    public ResponseEntity<?> updatePasword(@RequestBody ChangePasswordDTO cp) {
         return ResponseEntity
                 .ok()
                 .body(new MessageResponse(userService.updatePassword(cp.getId(), cp.getOldPassword(), cp.getNewPassword())));

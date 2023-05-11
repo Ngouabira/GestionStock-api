@@ -1,4 +1,4 @@
-package com.gildas.gestionstock.auth.payload.request;
+package com.gildas.gestionstock.auth.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ChangePasswordRequest {
+public class ChangePasswordDTO {
 	
 	private int id;
 	private String oldPassword;
@@ -18,7 +18,7 @@ public class ChangePasswordRequest {
 		return id;
 	}
 
-	public ChangePasswordRequest(String oldPassword, String newPassword) {
+	public ChangePasswordDTO(String oldPassword, String newPassword) {
 		super();
 		this.oldPassword = oldPassword;
 		this.newPassword = newPassword;

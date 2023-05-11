@@ -1,4 +1,4 @@
-package  com.gildas.gestionstock.auth.payload.response;
+package com.gildas.gestionstock.auth.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class MessageResponse {
 	
 	private String message;
+	//private String code;
 }

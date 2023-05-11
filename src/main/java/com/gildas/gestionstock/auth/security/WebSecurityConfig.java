@@ -58,7 +58,17 @@ public class WebSecurityConfig {
    @Bean
     protected SecurityFilterChain configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
-                .authorizeRequests().requestMatchers("/swagger-ui.html","/swagger-ui/index.html", "/swagger-ui/**", "/swagger-ui.html", "/swagger-ui.html/**", "/swagger-ui/index.html/**", "/api-docs/**","/api/auth/**", "/api/user/forgot-password/**", "/api/user/reset-password/**").permitAll()
+                .authorizeRequests().requestMatchers(
+                        "/swagger-ui.html",
+                        "/swagger-ui/index.html",
+                        "/swagger-ui/**",
+                        "/swagger-ui.html",
+                        "/swagger-ui.html/**",
+                        "/swagger-ui/index.html/**",
+                        "/api-docs/**",
+                        "/api/auth/**",
+                        "/api/user/forgot-password/**",
+                        "/api/user/reset-password/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

@@ -18,10 +18,10 @@ import java.util.Objects;
 @Transactional
 public class UserService {
 
-    UserRepository userRepository;
-    PasswordEncoder encoder;
+    final UserRepository userRepository;
+    final PasswordEncoder encoder;
 
-    public List<User> read() {
+    public List<User> all() {
 
         return userRepository.findAll();
     }
@@ -31,7 +31,7 @@ public class UserService {
      * @param user User the user to create
      * @return void
      */
-    public String create(User user) {
+    public String save(User user) {
 
         User userByEmail = userRepository.findByUsername(user.getUsername());
         User userByPhone = userRepository.findByTelephone(user.getTelephone());
@@ -88,7 +88,7 @@ public class UserService {
      * @param id int : l'id de l'utilisateur à modifier
      * @param photo MultipartFile : la photo de l'utilisateur à modifier
      */
-    public void addProfilePicture(int id, String photo) {
+    public void changeProfilePicture(int id, String photo) {
 
         User user = userRepository.getById(id);
         user.setPhoto(photo);
@@ -180,7 +180,6 @@ public class UserService {
             return "Ce numéro de téléphone existe déjà";
         } else {
 
-
             User user = userRepository.getById(u.getId());
             user.setTelephone(u.getTelephone());
             userRepository.save(user);
@@ -208,11 +207,9 @@ public class UserService {
             userRepository.save(user);
             return "ok";
 
-
         } else {
             return "L'ancien mot de passe n'est pas correct!";
         }
-
 
     }
 
@@ -267,8 +264,7 @@ public class UserService {
      * @param page int : la page de résultat à récupérer
      * @return Page<User> : la page de résultat de la recherche
      */
-    public Page<User> getUsers(String nom, String genre, String role, int page) {
-        System.out.println(nom + genre);
+    public Page<User> searchUser(String nom, String genre, String role, int page) {
 		Pageable pageRequest = PageRequest.of(page, 10);
         return userRepository.findByNomLikeAndGenreLikeAndRole("%"+nom+"%", "%"+genre+"%", role, pageRequest);
     }

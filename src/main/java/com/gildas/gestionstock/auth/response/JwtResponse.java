@@ -1,4 +1,4 @@
-package com.gildas.gestionstock.auth.payload.response;
+package com.gildas.gestionstock.auth.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,11 +14,11 @@ import java.util.List;
 public class JwtResponse {
 	private String token;
 	private String type = "Bearer";
-	private String etat;
+	private String status;
 	private List<String> roles;
-	public JwtResponse(String accessToken, String etat,  List<String> roles) {
+	public JwtResponse(String accessToken, String status,  List<String> roles) {
 		this.token = accessToken;
-		this.etat = etat;
+		this.status = status;
 		this.roles = roles;
 	}
 

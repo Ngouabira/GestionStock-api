@@ -1,8 +1,8 @@
 package com.gildas.gestionstock.auth.controller;
 
+import com.gildas.gestionstock.auth.dto.ChangePasswordDTO;
 import com.gildas.gestionstock.auth.entity.User;
-import com.gildas.gestionstock.auth.payload.request.ChangePasswordRequest;
-import com.gildas.gestionstock.auth.payload.response.MessageResponse;
+import com.gildas.gestionstock.auth.response.MessageResponse;
 import com.gildas.gestionstock.auth.service.UserService;
 import com.gildas.gestionstock.auth.AppConfiguration;
 import com.gildas.gestionstock.email.EmailService;
@@ -27,21 +27,21 @@ public class UserController {
 
     private final UserService userService;
 
-    private EmailService emailService;
+    private final EmailService emailService;
 
     private final AppConfiguration appConfiguration;
 
     @GetMapping("/all")
     public List<User> read() {
 
-        return userService.read();
+        return userService.all();
 
     }
 
     @PostMapping("/create")
     public String create(@RequestBody User user) {
 
-        return userService.create(user);
+        return userService.save(user);
 
     }
 
@@ -82,7 +82,7 @@ public class UserController {
 
 		User u = new User();
 		u.setPhoto(Base64.getEncoder().encodeToString(file.getBytes()));
-		userService.addProfilePicture(id, u.getPhoto());
+		userService.changeProfilePicture(id, u.getPhoto());
 
 	}
 
@@ -107,7 +107,7 @@ public class UserController {
     }
 
     @PutMapping("/update-password")
-    public ResponseEntity<?> updatePasword(@RequestBody ChangePasswordRequest cp) {
+    public ResponseEntity<?> updatePasword(@RequestBody ChangePasswordDTO cp) {
         return ResponseEntity
                 .ok()
                 .body(new MessageResponse(userService.updatePassword(cp.getId(), cp.getOldPassword(), cp.getNewPassword())));

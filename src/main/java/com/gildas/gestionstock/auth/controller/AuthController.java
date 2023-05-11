@@ -1,10 +1,9 @@
 package com.gildas.gestionstock.auth.controller;
 
 import com.gildas.gestionstock.auth.entity.User;
-import com.gildas.gestionstock.auth.payload.request.LoginRequest;
-import com.gildas.gestionstock.auth.payload.request.RegisterRequest;
-import com.gildas.gestionstock.auth.payload.response.JwtResponse;
-import com.gildas.gestionstock.auth.payload.response.MessageResponse;
+import com.gildas.gestionstock.auth.dto.LoginDTO;
+import com.gildas.gestionstock.auth.dto.RegisterDTO;
+import com.gildas.gestionstock.auth.response.JwtResponse;
 import com.gildas.gestionstock.auth.repository.UserRepository;
 import com.gildas.gestionstock.auth.security.jwt.JwtUtils;
 import com.gildas.gestionstock.auth.service.UserDetailsImpl;
@@ -24,6 +23,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
@@ -31,18 +31,14 @@ import java.util.stream.Collectors;
 public class AuthController {
 
     AuthenticationManager authenticationManager;
-
-
     UserRepository userRepository;
 
     PasswordEncoder encoder;
-
     JwtUtils jwtUtils;
-
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/login")
-    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
+    public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginDTO loginRequest) {
 
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
@@ -64,25 +60,17 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
-        if (userRepository.findByUsername(registerRequest.getUsername())!=null) {
-            return ResponseEntity
-                    .ok()
-                    .body(new MessageResponse("Cette adresse email existe déjà!"));
-        }
+    public String registerUser(@Valid @RequestBody RegisterDTO registerRequest) {
 
-        if (userRepository.findByTelephone(registerRequest.getTelephone())!=null) {
-            return ResponseEntity
-                    .ok()
-                    .body(new MessageResponse("Ce numéro de téléphone existe déjà!"));
-        }
-
-        User user = new User(registerRequest.getNom(), registerRequest.getPrenom(), registerRequest.getUsername(), registerRequest.getTelephone(), registerRequest.getGenre(),
-                encoder.encode(registerRequest.getPassword()));
-
-        userRepository.save(user);
-
-        return ResponseEntity.ok(new MessageResponse("success"));
+        User user = User.builder()
+                .nom(registerRequest.getNom())
+                .prenom(registerRequest.getPrenom())
+                .username(registerRequest.getUsername())
+                .telephone(registerRequest.getTelephone())
+                .genre(registerRequest.getGenre())
+                .password( encoder.encode(registerRequest.getPassword()))
+                .build();
+        return userService.save(user);
     }
 
 }

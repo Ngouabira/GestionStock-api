@@ -40,7 +40,7 @@ public class UserDetailsImpl implements UserDetails {
         this.authorities = authorities;
     }
 
-    public static UserDetailsImpl build(User user) {
+    public static UserDetailsImpl create(User user) {
         List<GrantedAuthority> authorities = List.of(user.getRole()).stream()
                 .map(role -> new SimpleGrantedAuthority(user.getRole()))
                 .collect(Collectors.toList());

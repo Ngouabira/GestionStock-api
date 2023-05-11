@@ -26,7 +26,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
             throw new UsernameNotFoundException("Utilisateur inexistant");
         } else {
-            return UserDetailsImpl.build(user);
+            return UserDetailsImpl.create(user);
         }
 
 

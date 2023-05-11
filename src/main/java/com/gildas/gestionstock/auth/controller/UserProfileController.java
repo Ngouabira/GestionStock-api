@@ -1,7 +1,7 @@
 package com.gildas.gestionstock.auth.controller;
 
 import com.gildas.gestionstock.auth.entity.User;
-import com.gildas.gestionstock.auth.payload.response.MessageResponse;
+import com.gildas.gestionstock.auth.response.MessageResponse;
 import com.gildas.gestionstock.auth.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -20,11 +20,11 @@ public class UserProfileController {
     private final UserService userService;
 
     @PutMapping("/change-profile-picture/{id}")
-    public void addPhoto(@PathVariable("id") int id, @RequestParam("file") MultipartFile file) throws IOException {
+    public void changePhoto(@PathVariable("id") int id, @RequestParam("file") MultipartFile file) throws IOException {
 
         User u = new User();
         u.setPhoto(Base64.getEncoder().encodeToString(file.getBytes()));
-        userService.addProfilePicture(id, u.getPhoto());
+        userService.changeProfilePicture(id, u.getPhoto());
 
     }
 
@@ -35,8 +35,8 @@ public class UserProfileController {
                 .body(new MessageResponse(userService.updateProfile(user)));
     }
 
-    @PutMapping("/update-email")
-    public String updateEmail(@RequestBody User user) {
+    @PutMapping("/update-username")
+    public String updateUsername(@RequestBody User user) {
 
         return userService.updateUsername(user);
 

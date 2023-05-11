@@ -1,4 +1,4 @@
-package com.gildas.gestionstock.auth.payload.request;
+package com.gildas.gestionstock.auth.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class LoginRequest {
+public class LoginDTO {
 	
 	@NotBlank
 	private String username;

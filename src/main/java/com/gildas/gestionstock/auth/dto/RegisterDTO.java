@@ -1,4 +1,4 @@
-package com.gildas.gestionstock.auth.payload.request;
+package com.gildas.gestionstock.auth.dto;
 
 import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RegisterRequest {
+public class RegisterDTO {
     @NotBlank
     @Size(min = 2, max = 100)
     private String nom;

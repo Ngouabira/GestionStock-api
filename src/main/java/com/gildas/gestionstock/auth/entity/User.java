@@ -39,7 +39,10 @@ public class User implements Serializable {
     private String prenom;
 
     @NotNull
-    private String role;
+    @Size(min = 5, max = 11)
+    private String genre;
+
+    private String date_naissance;
 
     @NotNull
     @Column(nullable = false, unique = true)
@@ -51,19 +54,15 @@ public class User implements Serializable {
     @Size(min = 3, max = 20)
     private String telephone;
 
+    @Lob
+    private String photo = "default.png";
     @NotNull
-    @Size(min = 5, max = 11)
-    private String genre;
-
-    private String date_naissance;
+    private String role;
 
     @NotNull
     @Size(min = 4)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
-
-    @Lob
-    private String photo = "default.png";
 
     private String resetPasswordToken;
 
@@ -81,28 +80,6 @@ public class User implements Serializable {
     public User(String username, @Size(min = 5) String password) {
         super();
         this.username = username;
-        this.password = password;
-    }
-
-    public User(@Size(min = 5, max = 40) String nom, @Size(min = 5, max = 40) String prenom, String username,
-                @Size(min = 3, max = 40) String telephone, @Size(min = 5, max = 40) String genre,
-                @Size(min = 5) String password) {
-        super();
-        this.nom = nom;
-        this.prenom = prenom;
-        this.username = username;
-        this.telephone = telephone;
-        this.genre = genre;
-        this.password = password;
-    }
-
-    public User(String nom, String prenom, String role, String username, String telephone, String genre, String password) {
-        this.nom = nom;
-        this.prenom = prenom;
-        this.role = role;
-        this.username = username;
-        this.telephone = telephone;
-        this.genre = genre;
         this.password = password;
     }
 
